@@ -1,0 +1,176 @@
+{% extends 'base.html' %} {% block title %}Admin - Contact Messages{% endblock
+%} {% block content %}
+<div class="max-w-6xl mx-auto">
+  <div class="bg-white rounded-lg shadow-md p-8">
+    <div class="flex justify-between items-center mb-8">
+      <h1 class="text-4xl font-bold text-gray-800">Contact Messages</h1>
+      <div class="text-sm text-gray-600">
+        Total Messages:
+        <span class="font-semibold text-blue-600">{{ contacts|length }}</span>
+      </div>
+    </div>
+
+    {% if contacts %}
+    <div class="overflow-x-auto">
+      <table class="min-w-full bg-white border border-gray-200 rounded-lg">
+        <thead class="bg-gray-50">
+          <tr>
+            <th
+              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+            >
+              ID
+            </th>
+            <th
+              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+            >
+              Name
+            </th>
+            <th
+              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+            >
+              Email
+            </th>
+            <th
+              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+            >
+              Phone
+            </th>
+            <th
+              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+            >
+              Subject
+            </th>
+            <th
+              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+            >
+              Message
+            </th>
+            <th
+              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+            >
+              Date
+            </th>
+          </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+          {% for contact in contacts %}
+          <tr class="hover:bg-gray-50">
+            <td
+              class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+            >
+              {{ contact.id }}
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+              {{ contact.name }}
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+              <a
+                href="mailto:{{ contact.email }}"
+                class="text-blue-600 hover:text-blue-800"
+              >
+                {{ contact.email }}
+              </a>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+              {% if contact.phone %}
+              <a
+                href="tel:{{ contact.phone }}"
+                class="text-green-600 hover:text-green-800"
+              >
+                {{ contact.phone }}
+              </a>
+              {% else %}
+              <span class="text-gray-400">-</span>
+              {% endif %}
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <span
+                class="inline-flex px-2 py-1 text-xs font-semibold rounded-full {% if contact.subject == 'general' %}bg-blue-100 text-blue-800 {% elif contact.subject == 'support' %}bg-red-100 text-red-800 {% elif contact.subject == 'feedback' %}bg-green-100 text-green-800 {% elif contact.subject == 'business' %}bg-purple-100 text-purple-800 {% else %}bg-gray-100 text-gray-800{% endif %}"
+              >
+                {{ contact.subject.title() }}
+              </span>
+            </td>
+            <td class="px-6 py-4 text-sm text-gray-900 max-w-xs">
+              <div class="truncate" title="{{ contact.message }}">
+                {{ contact.message[:100] }}{% if contact.message|length > 100
+                %}...{% endif %}
+              </div>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              {{ contact.created_at.strftime('%Y-%m-%d %H:%M') }}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <div class="text-center py-12">
+      <div class="text-gray-400 mb-4">
+        <svg
+          class="mx-auto h-12 w-12"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"
+          ></path>
+        </svg>
+      </div>
+      <h3 class="text-lg font-medium text-gray-900 mb-2">No messages yet</h3>
+      <p class="text-gray-500">
+        Contact messages will appear here once users start submitting the
+        contact form.
+      </p>
+    </div>
+    {% endif %}
+
+    <!-- Navigation -->
+    <div class="mt-8 flex justify-between">
+      <a
+        href="{{ url_for('home') }}"
+        class="inline-flex items-center px-4 py-2 bg-gray-600 text-white font-medium rounded-lg hover:bg-gray-700 transition-colors duration-200"
+      >
+        <svg
+          class="mr-2 w-4 h-4"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M15 19l-7-7 7-7"
+          ></path>
+        </svg>
+        Back to Home
+      </a>
+
+      <a
+        href="{{ url_for('contact') }}"
+        class="inline-flex items-center px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors duration-200"
+      >
+        <svg
+          class="mr-2 w-4 h-4"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+          ></path>
+        </svg>
+        Add New Message
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}

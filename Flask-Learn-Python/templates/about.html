@@ -1,0 +1,48 @@
+{% extends 'base.html' %} {% block title %}About - Flask App{% endblock %} {%
+block content %}
+<div class="max-w-4xl mx-auto">
+  <div class="bg-white rounded-lg shadow-md p-8">
+    <h1 class="text-4xl font-bold text-gray-800 mb-8">About Page</h1>
+
+    <div class="prose max-w-none">
+      <p class="text-lg text-gray-600 mb-6">
+        This is a Flask application built with Tailwind CSS for modern,
+        responsive styling.
+      </p>
+
+      <div class="bg-blue-50 rounded-lg p-6 mb-6">
+        <h2 class="text-2xl font-semibold text-blue-800 mb-4">Features</h2>
+        <ul class="list-disc list-inside space-y-2 text-blue-700">
+          <li>Flask web framework</li>
+          <li>Tailwind CSS for styling</li>
+          <li>Responsive design</li>
+          <li>Template inheritance</li>
+          <li>Dynamic content rendering</li>
+        </ul>
+      </div>
+
+      <div class="mt-8">
+        <a
+          href="{{ url_for('home') }}"
+          class="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors duration-200"
+        >
+          <svg
+            class="mr-2 w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M15 19l-7-7 7-7"
+            ></path>
+          </svg>
+          Back to Home
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

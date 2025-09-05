@@ -1,0 +1,289 @@
+{% extends 'base.html' %} {% block title %}API Documentation - Flask App{%
+endblock %} {% block content %}
+<div class="max-w-6xl mx-auto">
+  <div class="bg-white rounded-lg shadow-md p-8">
+    <div class="text-center mb-8">
+      <h1 class="text-4xl font-bold text-gray-800">API Documentation</h1>
+      <p class="text-gray-600 mt-2">REST API endpoints for Flask App</p>
+    </div>
+
+    <!-- Base URL -->
+    <div class="bg-blue-50 rounded-lg p-6 mb-8">
+      <h2 class="text-xl font-semibold text-blue-800 mb-2">Base URL</h2>
+      <code class="text-blue-600 bg-blue-100 px-3 py-1 rounded"
+        >http://localhost:5000/api</code
+      >
+    </div>
+
+    <!-- API Endpoints -->
+    <div class="space-y-8">
+      <!-- Get All Contacts -->
+      <div class="border border-gray-200 rounded-lg p-6">
+        <div class="flex items-center mb-4">
+          <span
+            class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium mr-4"
+            >GET</span
+          >
+          <h3 class="text-xl font-semibold text-gray-800">Get All Contacts</h3>
+        </div>
+        <p class="text-gray-600 mb-4">Retrieve all contact messages</p>
+        <div class="bg-gray-100 rounded p-4 mb-4">
+          <code class="text-sm">GET /api/contacts</code>
+        </div>
+        <div class="bg-gray-50 rounded p-4">
+          <h4 class="font-semibold mb-2">Response Example:</h4>
+          <pre class="text-sm text-gray-700 overflow-x-auto"><code>{
+  "success": true,
+  "data": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "email": "john@example.com",
+      "phone": "+1234567890",
+      "subject": "general",
+      "message": "Hello, this is a test message.",
+      "created_at": "2024-01-15T10:30:00"
+    }
+  ],
+  "count": 1
+}</code></pre>
+        </div>
+      </div>
+
+      <!-- Get Single Contact -->
+      <div class="border border-gray-200 rounded-lg p-6">
+        <div class="flex items-center mb-4">
+          <span
+            class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium mr-4"
+            >GET</span
+          >
+          <h3 class="text-xl font-semibold text-gray-800">
+            Get Single Contact
+          </h3>
+        </div>
+        <p class="text-gray-600 mb-4">Retrieve a specific contact by ID</p>
+        <div class="bg-gray-100 rounded p-4 mb-4">
+          <code class="text-sm">GET /api/contacts/{id}</code>
+        </div>
+        <div class="bg-gray-50 rounded p-4">
+          <h4 class="font-semibold mb-2">Response Example:</h4>
+          <pre class="text-sm text-gray-700 overflow-x-auto"><code>{
+  "success": true,
+  "data": {
+    "id": 1,
+    "name": "John Doe",
+    "email": "john@example.com",
+    "phone": "+1234567890",
+    "subject": "general",
+    "message": "Hello, this is a test message.",
+    "created_at": "2024-01-15T10:30:00"
+  }
+}</code></pre>
+        </div>
+      </div>
+
+      <!-- Create Contact -->
+      <div class="border border-gray-200 rounded-lg p-6">
+        <div class="flex items-center mb-4">
+          <span
+            class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium mr-4"
+            >POST</span
+          >
+          <h3 class="text-xl font-semibold text-gray-800">Create Contact</h3>
+        </div>
+        <p class="text-gray-600 mb-4">Create a new contact message</p>
+        <div class="bg-gray-100 rounded p-4 mb-4">
+          <code class="text-sm">POST /api/contacts</code>
+        </div>
+        <div class="bg-gray-50 rounded p-4 mb-4">
+          <h4 class="font-semibold mb-2">Request Body:</h4>
+          <pre class="text-sm text-gray-700 overflow-x-auto"><code>{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "phone": "+1234567890",
+  "subject": "general",
+  "message": "Hello, this is a test message."
+}</code></pre>
+        </div>
+        <div class="bg-gray-50 rounded p-4">
+          <h4 class="font-semibold mb-2">Response Example:</h4>
+          <pre class="text-sm text-gray-700 overflow-x-auto"><code>{
+  "success": true,
+  "message": "Contact created successfully",
+  "data": {
+    "id": 1,
+    "name": "John Doe",
+    "email": "john@example.com",
+    "phone": "+1234567890",
+    "subject": "general",
+    "message": "Hello, this is a test message.",
+    "created_at": "2024-01-15T10:30:00"
+  }
+}</code></pre>
+        </div>
+      </div>
+
+      <!-- Delete Contact -->
+      <div class="border border-gray-200 rounded-lg p-6">
+        <div class="flex items-center mb-4">
+          <span
+            class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-medium mr-4"
+            >DELETE</span
+          >
+          <h3 class="text-xl font-semibold text-gray-800">Delete Contact</h3>
+        </div>
+        <p class="text-gray-600 mb-4">
+          Delete a contact message (Login required)
+        </p>
+        <div class="bg-gray-100 rounded p-4 mb-4">
+          <code class="text-sm">DELETE /api/contacts/{id}</code>
+        </div>
+        <div class="bg-gray-50 rounded p-4">
+          <h4 class="font-semibold mb-2">Response Example:</h4>
+          <pre class="text-sm text-gray-700 overflow-x-auto"><code>{
+  "success": true,
+  "message": "Contact deleted successfully"
+}</code></pre>
+        </div>
+      </div>
+
+      <!-- Get All Users -->
+      <div class="border border-gray-200 rounded-lg p-6">
+        <div class="flex items-center mb-4">
+          <span
+            class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium mr-4"
+            >GET</span
+          >
+          <h3 class="text-xl font-semibold text-gray-800">Get All Users</h3>
+        </div>
+        <p class="text-gray-600 mb-4">Retrieve all users (Login required)</p>
+        <div class="bg-gray-100 rounded p-4 mb-4">
+          <code class="text-sm">GET /api/users</code>
+        </div>
+        <div class="bg-gray-50 rounded p-4">
+          <h4 class="font-semibold mb-2">Response Example:</h4>
+          <pre class="text-sm text-gray-700 overflow-x-auto"><code>{
+  "success": true,
+  "data": [
+    {
+      "id": 1,
+      "username": "john_doe",
+      "email": "john@example.com",
+      "created_at": "2024-01-15T10:30:00"
+    }
+  ],
+  "count": 1
+}</code></pre>
+        </div>
+      </div>
+
+      <!-- Get Current User -->
+      <div class="border border-gray-200 rounded-lg p-6">
+        <div class="flex items-center mb-4">
+          <span
+            class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium mr-4"
+            >GET</span
+          >
+          <h3 class="text-xl font-semibold text-gray-800">Get Current User</h3>
+        </div>
+        <p class="text-gray-600 mb-4">
+          Get current logged-in user info (Login required)
+        </p>
+        <div class="bg-gray-100 rounded p-4 mb-4">
+          <code class="text-sm">GET /api/user/me</code>
+        </div>
+        <div class="bg-gray-50 rounded p-4">
+          <h4 class="font-semibold mb-2">Response Example:</h4>
+          <pre class="text-sm text-gray-700 overflow-x-auto"><code>{
+  "success": true,
+  "data": {
+    "id": 1,
+    "username": "john_doe",
+    "email": "john@example.com",
+    "created_at": "2024-01-15T10:30:00"
+  }
+}</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Testing Section -->
+    <div class="mt-12 bg-yellow-50 rounded-lg p-6">
+      <h2 class="text-2xl font-bold text-yellow-800 mb-4">Testing the API</h2>
+      <p class="text-yellow-700 mb-4">You can test these endpoints using:</p>
+      <ul class="list-disc list-inside text-yellow-700 space-y-2">
+        <li><strong>Browser:</strong> Visit the GET endpoints directly</li>
+        <li>
+          <strong>Postman:</strong> Import the endpoints and test with different
+          methods
+        </li>
+        <li><strong>curl:</strong> Use command line to test the API</li>
+        <li>
+          <strong>JavaScript fetch:</strong> Use in your frontend applications
+        </li>
+      </ul>
+
+      <div class="mt-4 bg-yellow-100 rounded p-4">
+        <h3 class="font-semibold text-yellow-800 mb-2">
+          Example curl commands:
+        </h3>
+        <div class="space-y-2 text-sm">
+          <div class="bg-white rounded p-2">
+            <code>curl http://localhost:5000/api/contacts</code>
+          </div>
+          <div class="bg-white rounded p-2">
+            <code
+              >curl -X POST http://localhost:5000/api/contacts -H "Content-Type:
+              application/json" -d
+              '{"name":"Test","email":"test@example.com","subject":"general","message":"Hello"}'</code
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="mt-8 flex justify-between">
+      <a
+        href="{{ url_for('home') }}"
+        class="inline-flex items-center px-4 py-2 bg-gray-600 text-white font-medium rounded-lg hover:bg-gray-700 transition-colors duration-200"
+      >
+        <svg
+          class="mr-2 w-4 h-4"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M15 19l-7-7 7-7"
+          ></path>
+        </svg>
+        Back to Home
+      </a>
+
+      <a
+        href="{{ url_for('admin') }}"
+        class="inline-flex items-center px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors duration-200"
+      >
+        <svg
+          class="mr-2 w-4 h-4"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+          ></path>
+        </svg>
+        Admin Panel
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}
