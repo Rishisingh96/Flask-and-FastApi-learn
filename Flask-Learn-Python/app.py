@@ -95,7 +95,7 @@ def load_user(user_id):
 def home():
     data = {
         "title": "Home",
-        "name": ["Rishi", "John", "Jane", "Jim", "Jill"]
+        "name": ["Rishi", "John", "Jane", "Jim", "harry"]
     }
     return render_template('home.html',data=data)  # this is for html file
 
